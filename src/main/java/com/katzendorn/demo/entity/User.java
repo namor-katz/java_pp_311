@@ -26,6 +26,8 @@ public class User implements UserDetails {
 
     private String email;
 
+    private int maxweight;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
     //constructors
@@ -83,7 +85,14 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    //override methods
+    public int getMaxweight() {
+        return maxweight;
+    }
+
+    public void setMaxweight(int maxweight) {
+        this.maxweight = maxweight;
+    }
+//override methods
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
