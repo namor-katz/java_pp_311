@@ -18,14 +18,13 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/registration")
+    @GetMapping("/")
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
         return "registration";
     }
 
     @PostMapping("/registration")
-
     public String addUser(@ModelAttribute("userForm") @Valid User userForm, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
