@@ -22,7 +22,7 @@ public class User implements UserDetails {
     private String password;
 
     @Transient
-    private String passwordConfirm; //uncypher?
+    private String passwordConfirm; //для дублирующего ввода пароля.
 
     private String email;
 
@@ -30,6 +30,7 @@ public class User implements UserDetails {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
+
     //constructors
     public User() {}
 

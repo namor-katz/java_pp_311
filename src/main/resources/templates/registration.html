@@ -7,7 +7,12 @@
 <body>
 <div>
     <form th:action="@{/registration}"  th:object="${userForm}" method="post">
-        <p>Userame: <input type="text" th:field="*{username}" placeholder="Username"></p>
+        <p>Userame:<br> <input type="text" th:field="*{username}" placeholder="Username"></p>
+        <p>Password: <br><input type="password" placeholder="password" th:field="*{password}"></p>
+        <p>Password confirm <br> <input type="password" placeholder="ещё раз" th:field="*{passwordConfirm}"></p>
+        <p>Email: <br><input type="text" placeholder="email" th:field="*{email}"></p>
+        <p>MaxWeigth <br> <input type="text" placeholder="MaxWeigth" th:field="*{maxweight}"></p>
+        <p><input type="submit" value="ReG!"></p>
     </form>
 </div>
 </body>
