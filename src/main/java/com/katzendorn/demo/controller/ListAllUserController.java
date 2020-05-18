@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/fuck")
 public class ListAllUserController {
 
     @Autowired

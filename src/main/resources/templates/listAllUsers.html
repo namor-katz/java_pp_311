@@ -9,7 +9,6 @@
 <div align="center">
     <table border="1" cellpadding="5">
         <caption>sumo wrestlers</caption>
-        <tr th:each="user : ${list}">
             <th>ID</th>
             <th>Name</th>
             <th>Email</th>
@@ -18,11 +17,20 @@
 <!--            <th>Is admin?</th>-->
         </tr>
         <tr>
-            <td th:text="${user.id}"></td>
+        <tr th:each="user : ${list}">
+            <td th:text="${user.id}">1</td>
             <td th:text="${user.username}"></td>
-        </tr>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.maxweight}"></td>
+        <td>
+            <a href="/admin/edit?id">Edit</a>
+<!--            <a href="/admin/delete?id" th:text='${user.id}'>Delete</a>-->
+            <a th:href="@{/admin/delete/(id=${user.id})}">Delete!</a>
+        </td>
+    </tr>
     </table>
 
+    <a href="/logout">Exit</a>
 </div>
 </body>
 </html>
