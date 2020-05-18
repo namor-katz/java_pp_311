@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
+    <title>List all Users</title>
+</head>
+<body>
+<h2 align="center"><a href="/registration">Add new user</a></h2>
+<div align="center">
+    <table border="1" cellpadding="5">
+        <caption>sumo wrestlers</caption>
+        <tr th:each="user : ${list}">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>MaxWeight</th>
+            <th>Actions</th>
+<!--            <th>Is admin?</th>-->
+        </tr>
+        <tr>
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.username}"></td>
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>

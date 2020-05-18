@@ -35,6 +35,12 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
+        <!-- add thymeleaf of Otus example -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
 		<!-- final starters -->
 		<!-- of standarts use mysql -->
 		<dependency>
@@ -79,11 +85,6 @@
 			</exclusions>
 		</dependency>
 
-		<!-- add thymeleaf of Otus example -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
 
 		<!-- необходимо, начиная со Spring Boot 2 https://habr.com/ru/post/442386/  но есть рабочие примеры со 2 без этого-->
 		<dependency>
