@@ -14,7 +14,7 @@
             <th>Email</th>
             <th>MaxWeight</th>
             <th>Actions</th>
-<!--            <th>Is admin?</th>-->
+            <th>Is admin?</th>
         </tr>
         <tr>
         <tr th:each="user : ${list}">
@@ -22,6 +22,7 @@
             <td th:text="${user.username}"></td>
             <td th:text="${user.email}"></td>
             <td th:text="${user.maxweight}"></td>
+            <td></td>
         <td>
             <a th:href="@{/admin/edit/(id=${user.id})}">Edit</a>
             <a th:href="@{/admin/delete/(id=${user.id})}">Delete!</a>
