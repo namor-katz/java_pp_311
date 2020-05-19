@@ -23,8 +23,7 @@
             <td th:text="${user.email}"></td>
             <td th:text="${user.maxweight}"></td>
         <td>
-            <a href="/admin/edit?id">Edit</a>
-<!--            <a href="/admin/delete?id" th:text='${user.id}'>Delete</a>-->
+            <a th:href="@{/admin/edit/(id=${user.id})}">Edit</a>
             <a th:href="@{/admin/delete/(id=${user.id})}">Delete!</a>
         </td>
     </tr>

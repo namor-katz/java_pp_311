@@ -65,6 +65,13 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
+    public void updateUser(User user) {
+//        Long id = user.getId();
+//        User oldUser = (User) userRepository.findById(id);
+        userRepository.save(user)        ;
+
+    }
+
     public boolean deleteUser(Long userId) {
         if (userRepository.findById(userId).isPresent()) {
             userRepository.deleteById(userId);

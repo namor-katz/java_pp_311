@@ -32,9 +32,17 @@ public class AdminController {
         return "editUser";
     }
 
-
-
-    //begin
+    @PostMapping(value = "edit")
+    public String editUser(@RequestParam long id, @RequestParam String username,
+                           @RequestParam String email, @RequestParam int maxweight) {
+            User user = userService.findUserById(id);
+            user.setUsername(username);
+            user.setEmail(email);
+            user.setMaxweight(maxweight);
+            userService.updateUser(user);
+            return "redirect:/admin/list";
+    }
+    //===== begin edit user block ==========
 
 
     @GetMapping(value = "delete")

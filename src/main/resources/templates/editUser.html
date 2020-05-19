@@ -7,10 +7,12 @@
 <body>
 <form method="post" accept-charset="UTF-8">
     <p>Name</p>
-    <p><input type="text" > </p>
+    <p><input type="text" name="username" th:value="${user.username}"> </p>
     <p>email</p>
-    <p><input type="text"></p>
-
+    <p><input type="text" name="email" th:value="${user.email}"></p>
+    <p>Maxweight</p>
+    <p><input type="text" name="maxweight" th:value="${user.maxweight}"></p>
+    <p><input type="submit" value="edit"></p>
 </form>
 </body>
 </html>
