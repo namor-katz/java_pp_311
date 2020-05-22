@@ -16,6 +16,8 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+
+
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public String returnListUsers(ModelMap model) {
         List<User> list = userService.allUsers();

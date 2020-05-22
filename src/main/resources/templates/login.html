@@ -1,19 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Login in with your account</title>
+<!--    <meta charset="UTF-8">-->
+    <meta name="namor" content="Training page">
+    <title>Login page</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+<!--    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+    <!-- Bootstrap core CSS -->
+
+<!--    <link rel="stylesheet" src="bootstrap.css">-->
+    <link src="../static/css/bootstrap.css" rel="stylesheet" type="text/css">
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link src="signin.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
-<!--<include src="./header.html"></include>-->
-<h1>Login page</h1>
-<p th:if="${loginError}" class="error">Wrong user or password</p>
-<form th:action="@{login}" method="post">
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" /> <br />
-    <input type="submit" value="Login">
-</form>
+<div class="text-center">
+<!--<p th:if="${loginError}" class="error">Wrong user or password</p>-->
+    <h1 class="h3 mb-3 font-weight-normal test-justify">Please sign in</h1>
+    <form th:action="@{login}" method="post" class="form-signin">
+        <label for="username" class="sr-only">Input login</label>
+        <input type="text" id="username" name="username" autofocus="autofocus" placeholder="login" class="form-control"/>
+
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" placeholder="password" class="form-control" required>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+</div>
 </body>
 </html>
