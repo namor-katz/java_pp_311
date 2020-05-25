@@ -30,9 +30,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .headers().frameOptions().sameOrigin().disable()
 //                .headers().frameOptions().sameOrigin().and().hsts().disable();
                 .authorizeRequests()
-                .antMatchers("/registration").not().fullyAuthenticated()
+//                .antMatchers("/registration").not().fullyAuthenticated()
                 .antMatchers("/", "/login", "/static/**/*").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/admin/**", "/registration").hasRole("ADMIN")
                 .antMatchers("/user").hasRole("USER")
                 //use authentification
         .anyRequest().authenticated()

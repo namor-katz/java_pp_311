@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
     <title>List all Users</title>
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
     <!-- bootstrap core css -->
     <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css">
-    <!-- не работает подключение файла стилей, хотя в login.html точно такое же подключение работает -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
@@ -51,10 +49,8 @@
 <!-- row 4. table -->
 <!--<div class="container">-->
     <table class="table table-striped">
-        <!-- заголовок таблицы уезжает вниз, хотя должен быть наверху. это поведение по умолчанию, оно описано тут.
-        https://developer.mozilla.org/ru/docs/Web/HTML/Element/caption НИКАКОЙ информации о переопределении этого параметра бутстряпом в доках бутстряпа - нет.
-         на странице БЕЗ бутстряпа заголовок находится ровно там, где он описан в спецификации: сверху. вывод - бутстряп нинужон. -->
         <caption class="h2">All users</caption>
+        <thead>
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -64,6 +60,8 @@
             <th>Delete</th>
         <!--            <th>Is admin?</th>-->
         </tr>
+    </thead>
+    <thbody>
         <tr>
         <tr th:each="user : ${list}">
             <td th:text="${user.id}"></td>
@@ -77,6 +75,7 @@
             <a th:href="@{/admin/delete/(id=${user.id})}"><button class="btn btn-danger">Delete</button></a>
         </td>
     </tr>
+    </thbody>
     </table>
 
 </div>
