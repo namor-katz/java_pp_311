@@ -1,39 +1,83 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
     <title>List all Users</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!--    <link href="../static/css/bootstrap.css" th:href="@{css/bootstrap.css}" rel="stylesheet" type="text/css">-->
+    <!-- не работает подключение файла стилей, хотя в login.html точно такое же подключение работает -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        /* только явным прописыванием стиля тут удалось сделать белым. почему? */
+        .text-secondary a:hover,
+        .text-white a:active,
+        .text-white a:visited
+        {
+            color: gray;
+        }
+    </style>
 </head>
 <body>
-<h2 align="center"><a href="/registration">Add new user</a></h2>
-<div align="center">
-    <table border="1" cellpadding="5">
-        <caption>sumo wrestlers</caption>
+<!-- 1 row, contents header -->
+<div class="container-fluid">
+    <header class="row text-white bg-dark">
+        <div class="col-md-9  text-white h2 text-left bg-dark" th:text="${you.email} + ' with roles:'">with roles: admin, user</div>
+        <div class="col-md-3 text-right bg-dark align-text-bottom"><a href="/logout">Logout</a></div>
+        <!--  гиперссылка не переезжает вниз, не позиционируется по центру вертикально. игнорирует свойства выставляемые в контейнере -->
+        <!-- не работает выставление цвета текста для гиперссылки -->
+        <!-- нет фавикона из коропки, не добавляется свой по этой доке https://www.baeldung.com/spring-boot-favicon -->
+    </header>
+</div>
+
+<div class="container">
+    <!-- row2, Admin Panel!-->
+    <div class="row">
+        <div class="h2 col-md-8">Admin panel</div>
+    </div>
+    <!-- row3 users and registration-->
+<div class="row">
+<!--    <div class="col-md-4"></div>-->
+    <div class="col-md-2 text-secondary bg-light">
+        <p>Users table</p>
+    </div>
+    <div class="col-md-2 text-left">
+        <p><a href="/registration">New User</a></p>
+    </div>
+</div>
+<!--</div>-->
+<!-- row 4. table -->
+<!--<div class="container">-->
+    <table class="table table-striped">
+        <!-- заголовок таблицы уезжает вниз, хотя должен быть наверху. это поведение по умолчанию, оно описано тут.
+        https://developer.mozilla.org/ru/docs/Web/HTML/Element/caption НИКАКОЙ информации о переопределении этого параметра бутстряпом в доках бутстряпа - нет.
+         на странице БЕЗ бутстряпа заголовок находится ровно там, где он описан в спецификации: сверху. вывод - бутстряп нинужон. -->
+        <caption class="h2">All users</caption>
+        <tr>
             <th>ID</th>
             <th>Name</th>
             <th>Email</th>
             <th>MaxWeight</th>
-            <th>Actions</th>
-<!--            <th>Is admin?</th>-->
+            <th>Edit</th>
+            <th>Delete</th>
+        <!--            <th>Is admin?</th>-->
         </tr>
         <tr>
         <tr th:each="user : ${list}">
-            <td th:text="${user.id}">1</td>
+            <td th:text="${user.id}"></td>
             <td th:text="${user.username}"></td>
             <td th:text="${user.email}"></td>
             <td th:text="${user.maxweight}"></td>
-<!--            <td></td>-->
         <td>
-            <a th:href="@{/admin/edit/(id=${user.id})}">Edit</a>
-            <a th:href="@{/admin/delete/(id=${user.id})}">Delete!</a>
+            <a th:href="@{/admin/edit/(id=${user.id})}"><button class="btn  btn-primary">Edit</button></a>
+        </td>
+        <td>
+            <a th:href="@{/admin/delete/(id=${user.id})}"><button class="btn btn-danger">Delete</button></a>
         </td>
     </tr>
     </table>
 
-    <a href="/logout">Exit</a>
 </div>
 </body>
 </html>

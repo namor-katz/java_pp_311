@@ -2,14 +2,69 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/" lang="en">
 <head>
     <meta charset="UTF-8" content="text/html">
-    <title>Title</title>
+    <title>User Info</title>
+
+
+<!--    <link href="../static/css/bootstrap.css" th:href="@{css/bootstrap.css}" rel="stylesheet" type="text/css">-->
+<!--    <link href="../static/css/reg.css" th:href="@{css/reg.css}" rel="stylesheet" type="text/css">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        /* только явным прописыванием стиля тут удалось сделать белым. почему? */
+        .text-secondary a:hover,
+        .text-white a:active,
+        .text-white a:visited
+        {
+            color: gray;
+        }
+    </style>
 </head>
 <body>
-This dummy
-<p th:text="${user.id}"></p>
-<p th:text="${user.username}">Ты </p>
-<p th:text="${user.email}"></p>
+<!-- 1 row, contents header -->
+<div class="container-fluid">
+    <header class="row text-white bg-dark">
+        <div class="col-md-9  text-white h2 text-left bg-dark" th:text="${user.email} + ' with roles:'">with roles: admin, user</div>
+        <div class="col-md-3 text-right bg-dark align-text-bottom"><a href="/logout">Logout</a></div>
+        <!--  гиперссылка не переезжает вниз, не позиционируется по центру вертикально. игнорирует свойства выставляемые в контейнере -->
+        <!-- не работает выставление цвета текста для гиперссылки -->
+        <!-- нет фавикона из коропки, не добавляется свой по этой доке https://www.baeldung.com/spring-boot-favicon -->
+    </header>
+    <div class="row"><div class="col-12"></div></div>
+    <!-- 2 row-->
+    <div class="row">
+        <div class="col-2 text-left text-white rounded bg-primary">User</div>
+        <div class="col-10 h1">User-information page</div>
+    </div>
+</div>
 
-<a href="/logout">Exit</a>
+<!-- row4 -->
+<div class="container">
+    <div class="row">
+        <div class="col-12 h2 bg-light">About user</div>
+    </div>
+    <div class="col-12">
+    <table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>email</th>
+        <th>maxWeigth</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:object="${user}">
+        <td th:text="*{id}"></td>
+        <td th:text="*{username}"></td>
+        <td th:text="*{email}"></td>
+        <td th:text="*{maxweight}"></td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+</div>
+
 </body>
 </html>

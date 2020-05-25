@@ -1,18 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<html xmlns:th="https://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/xhtml" >
 <head>
-    <meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
+        <meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
     <title>Регистрация</title>
+
+    <link href="../static/css/bootstrap.css" th:href="@{css/bootstrap.css}" rel="stylesheet" type="text/css">
+    <link href="../static/css/reg.css" th:href="@{css/reg.css}" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 </head>
+
 <body>
-<div>
+<div class="container-fluid" th:bgcolor="gray">
+    <div class="row">
+
+    </div>
+</div>
+<div class="container">
+    <h1>Admin panel</h1>
     <form th:action="@{/registration}"  th:object="${userForm}" method="post">
         <p>Userame:<br> <input type="text" th:field="*{username}" placeholder="Username"></p>
         <p>Password: <br><input type="password" placeholder="password" th:field="*{password}"></p>
         <p>Password confirm <br> <input type="password" placeholder="ещё раз" th:field="*{passwordConfirm}"></p>
         <p>Email: <br><input type="text" placeholder="email" th:field="*{email}"></p>
         <p>MaxWeigth <br> <input type="text" placeholder="MaxWeigth" th:field="*{maxweight}"></p>
-        <p><input type="submit" value="ReG!"></p>
+
+<!--        <p><input type="submit" value="ReG!"></p>-->
+        <button class="btn bnt-lg btn-success" type="submit">Add new user</button>
     </form>
 </div>
 </body>

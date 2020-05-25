@@ -3,6 +3,7 @@ package com.katzendorn.demo.controller;
 import com.katzendorn.demo.entity.User;
 import com.katzendorn.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +21,10 @@ public class AdminController {
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public String returnListUsers(ModelMap model) {
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<User> list = userService.allUsers();
         model.addAttribute("list", list);
+        model.addAttribute("you", principal);
         return "listAllUsers";
     }
 
