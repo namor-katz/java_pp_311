@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
+    <title>List all Users</title>
+    <!-- bootstrap core css -->
+    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style> /* только явным прописыванием стиля тут удалось сделать белым. почему? */
+        .text-secondary a:hover,
+        .text-white a:active,
+        .text-white a:visited
+        {
+            color: gray;
+        }
+        caption {
+            caption-side: top; /* Заголовок под таблицей */
+        }
+    </style>
+</head>
+<body>
+<!-- 1 row, contents header -->
+<div class="container-fluid">
+    <header class="row text-white bg-dark">
+        <div class="col-md-9  text-white h2 text-left bg-dark" th:text="${you.email} + ' with roles:'">with roles: admin, user</div>
+        <div class="col-md-3 text-right bg-dark align-text-bottom my-auto"><a href="/logout">Logout</a></div>
+        <!-- нет фавикона из коропки, не добавляется свой по этой доке https://www.baeldung.com/spring-boot-favicon -->
+    </header>
+</div>
+
+<div class="container">
+    <!-- row2, Admin Panel!-->
+    <div class="row">
+        <div class="h2 col-md-8">Admin panel</div>
+    </div>
+    <!-- row3 users and registration-->
+<div class="row">
+<!--    <div class="col-md-4"></div>-->
+    <div class="col-2 text-secondary border">
+        <p>Users table</p>
+    </div>
+    <div class="col-md-2 text-left">
+        <p><a href="/registration">New User</a></p>
+    </div>
+</div>
+<!--</div>-->
+<!-- row 4. table -->
+<!--<div class="container">-->
+    <table class="table table-striped table-hover">
+        <caption class="h2 ">All users</caption>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>MaxWeight</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        <!--            <th>Is admin?</th>-->
+        </tr>
+        </thead>
+
+        <thbody>
+        <tr>
+        <tr th:each="user : ${list}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.maxweight}"></td>
+        <td>
+            <a th:href="@{/admin/edit/(id=${user.id})}"><button class="btn  btn-primary">Edit</button></a>
+        </td>
+        <td>
+            <a th:href="@{/admin/delete/(id=${user.id})}"><button class="btn btn-danger">Delete</button></a>
+        </td>
+    </tr>
+    </thbody>
+    </table>
+
+</div> <!--close container -->
+</body>
+</html>

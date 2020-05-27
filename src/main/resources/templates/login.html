@@ -32,18 +32,27 @@
 </head>
 
 <body>
-<div class="text-center">
+<div class="container">
 <!--<p th:if="${loginError}" class="error">Wrong user or password</p>-->
-    <h1 class="h3 mb-3 font-weight-normal test-justify">Please sign in</h1>
-    <form th:action="@{login}" method="post" class="form-signin">
-        <label for="username" class="sr-only">Input login</label>
-        <input type="text" id="username" name="username" autofocus="autofocus" placeholder="login" class="form-control"/>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="h3 col-3 font-weight-normal text-center font-weight-bold">Please sign in</div>
+    </div>
 
-        <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password" name="password" placeholder="password" class="form-control" required>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-3">
+            <form th:action="@{login}" method="post" class="form-signin">
+                <label for="username" class="sr-only">Input login</label>
+                <input type="text" id="username" name="username" autofocus="autofocus" placeholder="login" class="form-control"/>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </form>
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" id="password" name="password" placeholder="password" class="form-control" required>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+        </div>
+    </div>
 </div>
 </body>
 </html>
