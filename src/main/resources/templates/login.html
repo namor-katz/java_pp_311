@@ -36,13 +36,15 @@
 <!--<p th:if="${loginError}" class="error">Wrong user or password</p>-->
     <div class="row">
         <div class="col-4"></div>
-        <div class="h3 col-3 font-weight-normal text-center font-weight-bold">Please sign in</div>
+        <div class="h2 col-3 font-weight-normal text-center font-weight-bold py-0 my-0">
+            <h3>&nbsp; Please sign in</h3>
+        </div>
     </div>
 
     <div class="row">
         <div class="col-4"></div>
-        <div class="col-3">
-            <form th:action="@{login}" method="post" class="form-signin">
+        <div class="col-4">
+            <form th:action="@{login}" method="post" class="form-signin py-0 my-0">
                 <label for="username" class="sr-only">Input login</label>
                 <input type="text" id="username" name="username" autofocus="autofocus" placeholder="login" class="form-control"/>
 
