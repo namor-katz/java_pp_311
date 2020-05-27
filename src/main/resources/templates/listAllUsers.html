@@ -40,13 +40,14 @@
         <div class="col-12">User</div>
     </div>
 
-
-    <div class="col-10 container bg-light">
+    <!-- base panel -->
+    <div class="col-10 container bg-light pb-5">
         <div class="row">
-            <div class="col-12 h1">Admin panel</div>
+            <div class="col-8 h2">Admin panel</div>
         </div>
-        <div class="row">
-            <div class="col-1">
+
+        <div class="row mb-0 ml-0">
+            <div class="col-1 border bg-white">
                 Users table
             </div>
             <div class="col-2 text-left">
@@ -54,41 +55,46 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-11">
+        <div lang="row ml-0 mb-0">
+            <div class="col-11 border h2 mb-0">All Users</div>
 
-                <table class="table table-striped border clearfix">
-                    <caption class="h2 border-top border-right border-left">All users</caption>
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>MaxWeight</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                        <!--            <th>Is admin?</th>-->
-                    </tr>
-                    </thead>
+<!--            <div class="row mt-0">-->
+                <div class="col-11  bg-white border">
 
-                    <thbody>
-                         <tr>
-                        <tr th:each="user : ${list}">
-                            <td th:text="${user.id}">1</td>
-                            <td th:text="${user.username}">admin</td>
-                            <td th:text="${user.email}">a@mail.ru</td>
-                            <td th:text="${user.maxweight}">75</td>
-                            <td>
-                                <a th:href="@{/admin/edit/(id=${user.id})}"><button class="btn  btn-primary">Edit</button></a>
-                            </td>
-                            <td>
-                                <a th:href="@{/admin/delete/(id=${user.id})}"><button class="btn btn-danger">Delete</button></a>
-                            </td>
+                    <table class="table table-striped">
+                        <!--                    <caption class="h2 mb-0 bg-light border ml-0">&nbsp; All users</caption>-->
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>MaxWeight</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                            <!--            <th>Is admin?</th>-->
                         </tr>
-                    </thbody>
-                </table>
+                        </thead>
+
+                        <thbody>
+                            <tr>
+                            <tr th:each="user : ${list}">
+                                <td th:text="${user.id}">1</td>
+                                <td th:text="${user.username}">admin</td>
+                                <td th:text="${user.email}">a@mail.ru</td>
+                                <td th:text="${user.maxweight}">75</td>
+                                <td>
+                                    <a th:href="@{/admin/edit/(id=${user.id})}"><button class="btn  btn-primary">Edit</button></a>
+                                </td>
+                                <td>
+                                    <a th:href="@{/admin/delete/(id=${user.id})}"><button class="btn btn-danger">Delete</button></a>
+                                </td>
+                            </tr>
+                        </thbody>
+                    </table>
+<!--                </div>-->
             </div>
         </div>
+
     </div>
 </div>
 </body>
