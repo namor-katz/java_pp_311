@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/" lang="en">
 <head>
     <meta charset="UTF-8" content="text/html">
-    <title>User Info</title>
+    <title>User page</title>
 
 
 <!--    <link href="../static/css/bootstrap.css" th:href="@{css/bootstrap.css}" rel="stylesheet" type="text/css">-->
@@ -20,6 +20,9 @@
         {
             color: gray;
         }
+        caption {
+            caption-side: top; /* Заголовок над таблицей */
+        }
     </style>
 </head>
 <body>
@@ -32,39 +35,44 @@
         <!-- не работает выставление цвета текста для гиперссылки -->
         <!-- нет фавикона из коропки, не добавляется свой по этой доке https://www.baeldung.com/spring-boot-favicon -->
     </header>
-    <div class="row"><div class="col-12"></div></div>
-    <!-- 2 row-->
-    <div class="row">
-        <div class="col-2 text-left text-white rounded bg-primary">User</div>
-        <div class="col-10 h1">User-information page</div>
-    </div>
 </div>
 
-<!-- row4 -->
-<div class="container">
+<div class="row">
+
+    <div class="col-2 container">       <!-- left container -->
+        <div class="col-12  text-white rounded bg-primary">User</div>
+    </div>
+    <!-- row4 -->
+
+    <div class="col-10 container bg-light">
+        <div class="row">
+            <div class="col-12 h2 font-weight-bold">User information-page</div>
+        </div>
     <div class="row">
-        <div class="col-12 h2 bg-light">About user</div>
+        <div class="col-10">
+            <table class="table table-striped border">
+                <caption class="h2 border">About user</caption>
+                <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>email</th>
+                    <th>maxWeigth</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:object="${user}">
+                    <td th:text="*{id}"></td>
+                    <td th:text="*{username}"></td>
+                    <td th:text="*{email}"></td>
+                    <td th:text="*{maxweight}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="col-12">
-    <table class="table table-striped">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>email</th>
-        <th>maxWeigth</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:object="${user}">
-        <td th:text="*{id}"></td>
-        <td th:text="*{username}"></td>
-        <td th:text="*{email}"></td>
-        <td th:text="*{maxweight}"></td>
-    </tr>
-    </tbody>
-    </table>
-    </div>
+</div>
 </div>
 
 </body>

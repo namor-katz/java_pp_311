@@ -1,106 +1,109 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/xhtml" >
 <head>
-        <meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
+	<meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
     <title>Регистрация</title>
 
     <link href="../static/css/bootstrap.css" th:href="@{css/bootstrap.css}" rel="stylesheet" type="text/css">
-<!--    <link href="../static/css/reg.css" th:href="@{css/reg.css}" rel="stylesheet" type="text/css">-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<style>
-    .form-control:valid {
-		background-color: #ffeb99 !important;
-	}
-	.text-secondary a:hover,
-	.text-white a:active,
-	.text-white a:visited
+	<style>
+	    .form-control:valid {
+			background-color: #ffeb99 !important;
+		}
+		.text-secondary a:hover,
+		.text-white a:active,
+		.text-white a:visited
 	{
 		color: gray;
 	}
-
-</style>
+	</style>
 </head>
 
 <body>
-
 <!-- 1 row, content header -->
 <div class="container-fluid">
     <header class="row text-white bg-dark">
         <div class="col-md-9  text-white h2 text-left bg-dark" th:text="${you.email} + ' with roles:'">with roles: admin, user</div>
-        <div class="col-md-3 text-right bg-dark align-text-bottom"><a href="/logout">Logout</a></div>
+        <div class="col-md-3 text-right bg-dark align-text-bottom my-auto"><a href="/logout">Logout</a></div>
     </header>
 </div>
 
+<div class="row">
 
+	<div class="container col-2">		<!-- левая панель -->
+		<div class="col-12 bg-primary text-white rounded">Admin</div>
+		<div class="col-12">User</div>
+	</div>
 
 <!-- 2 row Admin Panel -->
-<div class="container bg-light">
+<div class="col-10 container bg-light">
     <div class="row">
-	    <div class="col-md-8 h2">Admin panel</div>
+	    <div class="col-8 h2">Admin panel</div>
 	</div>
 
-	<div class="row">
-		<div class="col-md-2 text-secondary text-center">
-			<p><a href="/admin/list">Users table</a></p>
+	<div class="row mb-0">
+		<div class="col-1 text-secondary">
+			<a href="/admin/list">Users table</a>
 		</div>
-		<div class="col-md-2 text-left">
-			<p class="bg-light">New User</p>
+		<div class="col-1 text-left bg-white border text-secondary">
+			New User
 		</div>
 	</div>
 
-	<div class="container ">
-    	<div class="row">
-		<div class="col-12 h3 bg-light border">
-			Add new user
-		</div>
+    	<div class="row mt-0">
+			<div class="col-11 h3 bg-light border my-0"> <!-- !!! this good!!! my-0 is key.... -->
+				Add new user
+			</div>
 		</div>
 
 <!--	<div class="container-fluid border">-->
-	<form th:action="@{/registration}"  th:object="${userForm}" method="post" class="bg-white border p-0">
+<div class="row">
+	<form th:action="@{/registration}"  th:object="${userForm}" method="post" class="bg-white border pt-0 pb-3 col-11">
         <div class="row">
-			<div class="col-5"> </div> <!-- empty -->
+			<div class="col-4"> </div> <!-- empty -->
 			<div class="col-3">
         	    <p class="text-center font-weight-bold">First name<br> <input type="text" th:field="*{username}" placeholder="Username" class="form-control" required></p>
 		    </div>
 		</div>
 
         <div class="row">
-            <div class="col-5"></div> <!-- empty -->
+            <div class="col-4"></div> <!-- empty -->
             <div class="col-3 font-weight-bold text-center">
                 <p>Password <br><input type="password" placeholder="password" th:field="*{password}" class="form-control" required></p>
             </div>
         </div>
 
 		<div class="row">
-			<div class="col-5"></div>
+			<div class="col-4"></div>
 			<div class="col-3">
                 <p class="font-weight-bold text-center">Password confirm<br> <input type="password" placeholder="retype password" th:field="*{passwordConfirm}" class="form-control" required></p>
 			</div>
 		</div>
 	
 		<div class="row">
-			<div class="col-5"></div>
+			<div class="col-4"></div>
 			<div class="col-3">
 	        	<p class="text-center font-weight-bold">Email<br><input type="text" placeholder="email" th:field="*{email}" class="form-control" required></p>
 		    </div>
         </div>
 
 		<div class="row">
-			<div class="col-5"></div>
+			<div class="col-4"></div>
 			<div class="col-3">
 				<p class="font-weight-bold text-center">MaxWeigth <br> <input type="text" placeholder="MaxWeigth" th:field="*{maxweight}" class="form-control" required></p>
 			</div>
 		</div>
 <!--        <p><input type="submit" value="ReG!"></p>-->
 	<div class="row">
-		<div class="col-6"></div>
+		<div class="col-5"></div>
 		<div class="col-3">
 	        <button class="btn bnt-lg btn-success" type="submit">Add new user</button>
 		</div>
 	</div>
     </form>
-	</div>
+</div>
+  </div>
 </div>
 </body>
 </html>
