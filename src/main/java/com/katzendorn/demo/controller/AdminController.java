@@ -31,7 +31,7 @@ public class AdminController {
 
     //======== edit user block do ==========
     @GetMapping(value = "edit")
-    public String editUser(@RequestParam Long id, ModelMap model) {
+    public String editUser(Long id, ModelMap model) {
         User user = userService.findUserById(id);
         model.addAttribute("user", user);
         return "editUser";

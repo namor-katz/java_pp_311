@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
     <title>Admin panel</title>
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css">
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <style>
-    .text-secondary a:hover,
-    .text-white a:active,
-    .text-white a:visited
+        .text-secondary a:hover,
+        .text-white a:active,
+        .text-white a:visited
     {
         color: gray;
     }
@@ -21,10 +23,19 @@
     </style>
 </head>
 <body>
+<!-- modal window begin -->
+<!-- Мы рекомендуем размещать модальные элементы на самом верху страницы, когда возможно  https://bootstrap-4.ru/docs/4.0/components/modal/ -->
+
+<!--End update form-->
+
+
+<!-- modal window end! -->
+
 <!-- 1 row, contents header -->
 <div class="container-fluid">
     <header class="row text-white bg-dark">
-        <div class="col-md-9  text-white h2 text-left bg-dark" th:text="${you.email} + ' with roles:'">with roles: ADMIN, USER</div>
+        <div class="col-md-9  text-white h2 text-left bg-dark" th:each="role : ${you.roles}" th:text="${you.email} + ' with roles: ' + ${role.authority}">with roles: ADMIN, USER</div>
+        <!-- th:each="role : ${user.roles}" th:text="${role.authority}"  --->
         <div class="col-md-3 text-right bg-dark align-text-bottom my-auto"><a href="/logout">Logout</a></div>
         <!--  гиперссылка не переезжает вниз, не позиционируется по центру вертикально. игнорирует свойства выставляемые в контейнере -->
         <!-- не работает выставление цвета текста для гиперссылки -->
@@ -67,6 +78,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Role</th>
                             <th>Email</th>
                             <th>MaxWeight</th>
                             <th>Edit</th>
@@ -80,6 +92,7 @@
                             <tr th:each="user : ${list}">
                                 <td th:text="${user.id}">1</td>
                                 <td th:text="${user.username}">admin</td>
+                                <td th:each="role : ${user.roles}" th:text="${role.authority}">THis may role...</td>
                                 <td th:text="${user.email}">a@mail.ru</td>
                                 <td th:text="${user.maxweight}">75</td>
                                 <td>
@@ -88,6 +101,11 @@
                                 <td>
                                     <a th:href="@{/admin/delete/(id=${user.id})}"><button class="btn btn-danger">Delete</button></a>
                                 </td>
+                            <td>
+                                <!-- новыя моднявые кнопучки в одной струке! -->
+<!--                                <a href="#editUserModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="ХУЙ">&#xE254;</i></a>-->
+<!--                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>-->
+<!--                            </td>-->
                             </tr>
                         </thbody>
                     </table>
