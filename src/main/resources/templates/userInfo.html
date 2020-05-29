@@ -4,13 +4,15 @@
     <meta charset="UTF-8" content="text/html">
     <title>User page</title>
 
-
 <!--    <link href="../static/css/bootstrap.css" th:href="@{css/bootstrap.css}" rel="stylesheet" type="text/css">-->
 <!--    <link href="../static/css/reg.css" th:href="@{css/reg.css}" rel="stylesheet" type="text/css">-->
 <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css">
+<!--    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css">-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
     <style>
         /* только явным прописыванием стиля тут удалось сделать белым. почему? */
@@ -44,14 +46,26 @@
     </div>
     <!-- row4 -->
 
-    <div class="col-10 container bg-light">
+    <div class="col-10 container bg-light pb-5">
         <div class="row">
-            <div class="col-12 h2 font-weight-bold">User information-page</div>
+            <div class="col-12 h2">User information-page</div>
         </div>
+
+        <div class="row">
+            <div class="col-11 bg-light h3 m-0 border-right border-left border-top">
+                About user
+            </div>
+        </div>
+
     <div class="row">
-        <div class="col-10">
-            <table class="table table-striped border">
-                <caption class="h2 border">About user</caption>
+<!--        <div class="col-11 h2 border mb-0 ml-3 bg-danger">About user</div>-->
+        <!--        <div class="col11"></div>-->
+        <div class="col-11 bg-white m-0 p-0 border">
+<!--            <div class="col-12 h2 border mb-0">-->
+<!--                About user-->
+<!--            </div>-->
+            <table class="table table-striped">
+<!--                <caption class="h2 border">About user</caption>-->
                 <thead>
 
                 <tr>
