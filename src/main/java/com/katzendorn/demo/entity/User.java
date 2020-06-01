@@ -34,6 +34,15 @@ public class User implements UserDetails {
     //constructors
     public User() {}
 
+    //this constructor required from rest controller, from create user without password
+    public User(Long id, String username, String email, Set<Role> roles, int maxweight) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.roles = roles;
+        this.maxweight = maxweight;
+    }
+
 
     //getters and setters
     public Long getId() {
@@ -93,7 +102,13 @@ public class User implements UserDetails {
     public void setMaxweight(int maxweight) {
         this.maxweight = maxweight;
     }
-//override methods
+
+    //create user without password
+    public static User UserRest(User user) {
+        return new User(user.getId(), user.getUsername(), user.getEmail(), user.getRoles(), user.getMaxweight());
+    }
+
+    //override methods
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

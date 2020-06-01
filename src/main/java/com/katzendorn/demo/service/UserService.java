@@ -47,7 +47,7 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> allUsers() {
-        System.out.println("I in user service!");
+//        System.out.println("I in user service!");
         return userRepository.findAll();
     }
 
