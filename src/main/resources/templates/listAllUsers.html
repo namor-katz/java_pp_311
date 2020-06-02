@@ -86,6 +86,7 @@
                                 <td th:each="role : ${user.roles}" th:text="${role.authority}">THis may role...</td>
                                 <td th:text="${user.email}">a@mail.ru</td>
                                 <td th:text="${user.maxweight}">75</td>
+                            <!-- start big block -->
 <!-- тут начало едит-->         <td>
                                     <button class="btn btn-primary" data-toggle="modal" th:href="'#modall' + ${user.id}">
                                         Edit
@@ -133,6 +134,7 @@
                                     </div>
                                 </td>
                                 <td>
+                                    <!-- finall big block -->
 <!--                                    <a class="btn btn-danger" th:href="@{/admin/delete(id=${user.id})}" role="button">Delete</a>-->
 
                                     <button class="btn btn-danger" data-toggle="modal" th:href="'#modall2' + ${user.id}">

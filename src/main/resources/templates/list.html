@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<!--    <script src="webjars/jquery/3.3.1/jquery.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+    <table class="table">
+        <thead>
+            <th>ID</th>
+            <th>Username</th>
+<!--            <th>Role</th>-->
+            <th>Email</th>
+            <th>maxweith</th>
+            <th>Edit</td>
+            <th>Delete</td>
+        </thead>
+
+        <tbody>
+        </tbody>
+    </table>
+    </div>
+</div>
+</div>
+<script>
+    $(function () {
+        $.get('/api/v1/users', "json").done(function (users) {
+            users.forEach(function (user) {
+                $('tbody').append(`
+                    <tr>
+                        <td>${user.id}</td>
+                        <td>${user.username}</td>
+<!--                        <td>${user.role}</td>-->
+                        <td>${user.email}</td>
+                        <td>${user.maxweight}</td>
+                        <td>
+                            <button href="#modall" + ${user.id}>Edit!</button>
+                        </td>
+                        <td>
+                            <button href="/admin/delete/${user.id}">Delete</button>
+                        </td>
+                    </tr>
+                `)
+            });
+        })
+    });
+</script>
+</body>
+</html>
