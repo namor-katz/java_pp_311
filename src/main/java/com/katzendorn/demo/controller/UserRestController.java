@@ -23,6 +23,7 @@ public class UserRestController {
     @Autowired
     private UserService userService;
 
+    @CrossOrigin(origins = "*", maxAge = 3600)  //debug
     @GetMapping(value = "users")
 //    @ApiResponses()
     public List<User> getAllUsers() {
@@ -40,7 +41,10 @@ public class UserRestController {
         catch (Error e) {
             id1 = 1L;
         }
-        return userService.findUserById(id1);
+        User user = userService.findUserById(id1);
+        user.setPassword(null);
+        user.setPasswordConfirm(null);
+        return user;
     }
 
     @ApiOperation(value = "Delete user by id", code = 204)

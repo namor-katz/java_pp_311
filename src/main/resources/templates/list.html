@@ -35,7 +35,7 @@
     </div>
 </div>
 </div>
-<script>
+<script type="text/javascript">
     $(function () {
         $.get('/api/v1/users', "json").done(function (users) {
             users.forEach(function (user) {
@@ -47,14 +47,52 @@
                         <td>${user.email}</td>
                         <td>${user.maxweight}</td>
                         <td>
-                            <button href="#modall" + ${user.id} class="btn btn-primary" data-toggle="modal">Edit!</button>
+<!--                            <button href="#modall" + ${user.id} class="btn btn-primary" data-toggle="modal">Edit!</button>-->
+                            <button class="edit btn btn-primary" id="${user.id}">Edit!</button>
                         </td>
                         <td>
-                            <button href="http://localhost:8081/api/v1/user/delete/${user.id}" class="btn btn-danger">Delete</button>
+<!--                            <button href="http://localhost:8081/api/v1/user/delete/${user.id}" class="btn btn-danger">Delete</button>-->
+<!--                                <button class="edit btn btn-danger">Edit</button>&nbsp;&nbsp;<button class=\\'delete\\' id=' + user.id + '>Delete!</button>-->
+<!--                                <button class="btn btn-danger" data-toggle="modal" id=' + user.id + '>Delete</button>-->
+                                <button class="delete btn btn-danger" id="${user.id}">Delete</button>
                         </td>
                     </tr>
                 `)
             });
+        })
+    });
+
+    $(document).delegate('.delete', 'click', function() {
+        if (confirm('Удаление безвовратно. Подумай!')) {
+            var id = $(this).attr('id');
+            var parent = $(this).parent().parent();
+            $.ajax({
+                type: "DELETE",
+                url: "http://localhost:8081/api/v1/user/delete/" + id,
+                cache: false,
+                success: function() {
+                    parent.fadeOut('slow', function() {
+                        $(this).remove();
+                    });
+                    location.reload(true)
+                },
+                error: function() {
+                    $('#err').html('<span style=\'color:red; font-weight: bold; font-size: 30px;\'>Error deleting record').fadeIn().fadeOut(4000, function() {
+                        $(this).remove();
+                    });
+                }
+            });
+        }
+    });
+
+    $(document).delegate(".edit", 'click', function () {
+        var id = $(this).attr("id");
+        // alert(id);
+        var user = $.ajax({
+            type: "GET",
+            url: "http://localhost:8081/api/v1/user/info" + id,
+            cache: false,
+            success: alert(user.username)
         })
     });
 </script>
