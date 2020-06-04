@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/" lang="en">
 <head>
-    <meta charset="UTF-8" content="text/html">
-    <title>User page</title>
+    <meta charset="UTF-8">
+    <title>User Page Ajax</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -23,7 +23,6 @@
     </style>
 </head>
 <body>
-<!-- 1 row, contents header -->
 <div class="container-fluid">
     <header class="row text-white bg-dark">
         <div class="col-md-9  text-white h2 text-left bg-dark" th:text="${user.email} + ' with roles:'">with roles: admin, user</div>
@@ -34,55 +33,8 @@
     </header>
 </div>
 
-<div class="row">
+<script type="text/javascript">
 
-    <div class="col-2 container">       <!-- left container -->
-        <div class="col-12  text-white rounded bg-primary">User</div>
-    </div>
-    <!-- row4 -->
-
-    <div class="col-10 container bg-light pb-5">
-        <div class="row">
-            <div class="col-12 h2">User information-page</div>
-        </div>
-
-        <div class="row">
-            <div class="col-11 bg-light h3 m-0 border-right border-left border-top">
-                About user
-            </div>
-        </div>
-
-    <div class="row">
-<!--        <div class="col-11 h2 border mb-0 ml-3 bg-danger">About user</div>-->
-        <!--        <div class="col11"></div>-->
-        <div class="col-11 bg-white m-0 p-0 border">
-<!--            <div class="col-12 h2 border mb-0">-->
-<!--                About user-->
-<!--            </div>-->
-            <table class="table table-striped">
-<!--                <caption class="h2 border">About user</caption>-->
-                <thead>
-
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>email</th>
-                    <th>maxWeigth</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:object="${user}">
-                    <td th:text="*{id}"></td>
-                    <td th:text="*{username}"></td>
-                    <td th:text="*{email}"></td>
-                    <td th:text="*{maxweight}"></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-</div>
-
+</script>
 </body>
 </html>

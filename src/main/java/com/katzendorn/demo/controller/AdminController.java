@@ -20,7 +20,9 @@ public class AdminController {
     private UserService userService;
 
     @GetMapping(value = "list2")
-    public String listPage() {
+    public String listPage(ModelMap model) {
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("you", principal);
         return "list";
     }
 

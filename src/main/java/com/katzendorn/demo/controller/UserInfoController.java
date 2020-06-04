@@ -22,4 +22,11 @@ public class UserInfoController {
         model.addAttribute("user", principal);
         return "userInfo";
     }
+
+    @RequestMapping(value = "user2", method = RequestMethod.GET)
+    public String userInfo2(ModelMap model) {
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //конструктор??
+        model.addAttribute("user", principal);
+        return "userInfo2";
+    }
 }
