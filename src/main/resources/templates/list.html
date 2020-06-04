@@ -7,34 +7,145 @@
     <title>Title</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<!--    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script> &lt;!&ndash; это вообще надо? &ndash;&gt;-->
+    <!-- вот с этим заработало. но как то криво. откуда оно вообще дергает имена? как понимает что одно из одной либы, другое из другой? -->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />-->
 <!---    <script src="webjars/jquery/3.3.1/jquery.min.js"></script>-->
+<!--    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>-->
+<!--    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 
 <body>
-<div class="container-fluid">
-    <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-    <table class="table">
-        <thead>
-            <th>ID</th>
-            <th>Username</th>
-<!--            <th>Role</th>-->
-            <th>Email</th>
-            <th>maxweith</th>
-            <th>Edit</td>
-            <th>Delete</td>
-        </thead>
+<!-- modal begin -->
 
-        <tbody>
-        </tbody>
-    </table>
+<div class="modal fade bd-example-modal-lg" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userModalLabel">Edit User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" id="userForm">
+                    <input type="hidden" name="id" id="id">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" for="username">Name:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="username" class="form-control" id="username" placeholder="Username"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" for="email">Email:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="email" class="form-control" id="email" placeholder="email"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" for="maxwieght">MaxWeight:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="maxweight" class="form-control" id="maxwieght"
+                                   placeholder="максимальный вес"/>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" for="inputBookIsbn">ISBN:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="isbn" class="form-control" id="inputBookIsbn"
+                                   placeholder="ISBN"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" for="inputBookDescription">Description:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="description" class="form-control" id="inputBookDescription"
+                                   placeholder="Description"/>
+                        </div>
+                    </div>
+                    -->
+                    <div class="form-group">
+                        <select class="custom-select" id="authors-select" name="authors" size="5"
+                                multiple="multiple">
+                        </select>
+                    </div>
+                </form>
+                <form class="form-horizontal" role="form" id="commentForm">
+                    <div class="form-group row">
+                        <label for="inputCommentBody" class="col-sm-3 col-form-label">Comment:</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input id="inputCommentBody" class="form-control" name="commentBody" value=""
+                                       placeholder="Add comment"/>
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-primary col-sm-12" onclick="addComment()">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="ajaxSave()">Save changes</button>
+            </div>
+
+            <table class="table table-hover" id="bookComments">
+                <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Comment</th>
+                </tr>
+                </thead>
+                <tbody id="commentsTableBody">
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
+<!-- modal end -->
+<p><a class="btn" href="#add" rel="modal:open">Add New User</a></p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <table class="table">
+                <thead>
+                <th>ID</th>
+                <th>Username</th>
+                <!--            <th>Role</th>-->
+                <th>Email</th>
+                <th>maxweith</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                </thead>
+
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <form id="add" action="#" class="add_form modal" style="display: none;">
+        <div id="msg"/>
+        <h3>Add new user</h3>
+        <p>
+            <label>Username</label>
+            <input type="text" id="usernameOLD" name="username">
+        </p>
+        <input type="submit" id="addNew" value="Submit">
+    </form>
 </div>
+
 <script type="text/javascript">
     $(function () {
         $.get('/api/v1/users', "json").done(function (users) {
@@ -48,54 +159,114 @@
                         <td>${user.maxweight}</td>
                         <td>
 <!--                            <button href="#modall" + ${user.id} class="btn btn-primary" data-toggle="modal">Edit!</button>-->
-                            <button class="edit btn btn-primary" id="${user.id}">Edit!</button>
+                            <button class="edit btn btn-primary" id="edit"  data-id="${user.id}" onclick="ajaxGet(${user.id})">Edit!</button>
                         </td>
                         <td>
 <!--                            <button href="http://localhost:8081/api/v1/user/delete/${user.id}" class="btn btn-danger">Delete</button>-->
 <!--                                <button class="edit btn btn-danger">Edit</button>&nbsp;&nbsp;<button class=\\'delete\\' id=' + user.id + '>Delete!</button>-->
 <!--                                <button class="btn btn-danger" data-toggle="modal" id=' + user.id + '>Delete</button>-->
-                                <button class="delete btn btn-danger" id="${user.id}">Delete</button>
+                                <button  type="button" class="btn btn-danger" onclick='ajaxDelete(${user.id})'>Delete</button>
                         </td>
                     </tr>
                 `)
             });
         })
     });
+    // $(document).delegate(".edit", 'click', function () {
+    //     var id = $(this).attr("data-id");
+    //     alert(id);
+        // $.ajax({
+        //     type: "GET",
+        //     url: "http://localhost:8081/api/v1/user/info/" + id,
+        //     cache: false,
+            // success: alert(user.username)
+        // }).then(function (data) {
+        //     alert(data.username);
+        // })
+    // });
 
-    $(document).delegate('.delete', 'click', function() {
-        if (confirm('Удаление безвовратно. Подумай!')) {
-            var id = $(this).attr('id');
-            var parent = $(this).parent().parent();
-            $.ajax({
-                type: "DELETE",
-                url: "http://localhost:8081/api/v1/user/delete/" + id,
-                cache: false,
-                success: function() {
-                    parent.fadeOut('slow', function() {
-                        $(this).remove();
-                    });
-                    location.reload(true)
-                },
-                error: function() {
-                    $('#err').html('<span style=\'color:red; font-weight: bold; font-size: 30px;\'>Error deleting record').fadeIn().fadeOut(4000, function() {
-                        $(this).remove();
-                    });
-                }
-            });
-        }
-    });
+    $(document).delegate("#addNew", "click", function (event) {
+        event.preventDefault();
+        var username = $("#username").val();
 
-    $(document).delegate(".edit", 'click', function () {
-        var id = $(this).attr("id");
-        // alert(id);
-        var user = $.ajax({
-            type: "GET",
-            url: "http://localhost:8081/api/v1/user/info" + id,
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "http://localhost:8081/api/v1/user/new",
+            data: JSON.stringify({"username": username}),
             cache: false,
-            success: alert(user.username)
-        })
-    });
+            success: function(result) {
+                $("#msg").html( "<span style='color: green'>Company added successfully</span>" );
+                window.setTimeout(function(){location.reload()},1000)
+            },
+            error: function(err) {
+                $("#msg").html( "<span style='color: red'>Name is required</span>" );
+            }
+            }
+        )
+    })
 </script>
-<!--<script th:replace="fragments/scripts :: scripts"></script>-->
+
+<script>
+    let form = $("#userForm");
+    let modal = $("#userModal");
+
+    function ajaxDelete(id) {
+        $.ajax({
+            url: "http://localhost:8081/api/v1/user/delete/" + id,
+            type: "DELETE"
+        }).done(function () {
+            location.reload(true)
+        })
+    };
+
+
+    function ajaxGet(id) {
+        $("#bookModalLabel").html("Edit user");
+        $.get("http://localhost:8081/api/v1/user/info/" + id,
+            function (data) {
+                let username = data.username;
+                // alert(username);
+                let email = data.email;
+                let maxweigth = data.maxweight;
+                $.each(data, function (key, value) {    //хз почему там бук бук. не может быть тут не дата. по чему итерироваться то если бук
+                    switch (key) {
+                        case 'genre':
+                            form.find("input[name='genreName']").val(value.genreName);
+                            form.find("input[name='genreDescription']").val(value.genreDescription);
+                            break;
+                        case 'authors':
+                            let select = $("#authors-select");
+                            select.empty();
+                            $.each(authorList, function (k, v) {
+                                if (v.id) {
+                                    select.append(
+                                        $("<option></option>")
+                                            .attr("value", v.id)
+                                            .attr("selected", authorIds.includes(v.id))
+                                            .text(v.name + " " + v.sername)
+                                    );
+                                }
+                            });
+                            break;
+                        case 'comments':
+                            $("#commentsTableBody").empty();
+                            $.each(value, function (k, v) {
+                                let comment = "<tr><td>" + v.date + "</td>" +
+                                    "<td>" + v.commentBody + "</td></tr>";
+                                $("#commentsTableBody").append(comment);
+                            });
+                            break;
+                        default:
+                            //ищем в форме поле с именем ключа, вставляем туда
+                            // alert(key + "арря!");    //в общем, оно отлично всё видит. но не вставляет нихуя.
+                            form.find("input[name='" + key + "']").val(value);
+                    }
+                });
+            }).done(function () {
+            modal.modal();
+        });
+    }
+</script>
 </body>
 </html>
