@@ -60,15 +60,40 @@
 </div>
 
 <!-- modal end -->
-<!--<p><a class="btn" href="#add" rel="modal:open">Add New User</a></p>-->
-<div th:insert="fragments/header :: header (${you.roles}, ${you.email})"></div>
+<header th:insert="fragments/header :: header (${you.roles}, ${you.email})"></header>
 
-<button type="button" class="btn btn-primary">New User</button>
-<div class="container-fluid">
+<!--<button type="button" class="btn btn-primary">New User</button>-->
+
+<!--<div class="row"> </div>-->
+<div class="row">
+
+    <div class="col-2 container">		<!-- левый контейнер -->
+        <div class="col-12"></div>
+        <div class="col-12 bg-primary text-white rounded">Admin</div>
+        <div class="col-12">User</div>
+    </div>
+
+<!-- base panel -->
+<div class="container col-10 bg-light pb-5">
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-            <table class="table">
+        <div class="col-8 h2">Admin panel</div>
+    </div>
+
+    <div class="row mb-0 ml-0">
+        <div class="col-1 border bg-white">
+            Users table
+        </div>
+        <div class="col-2 text-left">
+            <a href="/registration">New User</a>
+        </div>
+    </div>
+
+    <div class="row ml-0 mb-0">
+        <!--        <div class="col-2"></div>-->
+        <div class="col-11 border-top border-right border-left h2 mb-0">All Users</div>
+
+        <div class="col-11 bg-white border">
+            <table class="table table-striped">
                 <thead>
                 <th>ID</th>
                 <th>Username</th>
@@ -84,6 +109,8 @@
             </table>
         </div>
     </div>
+</div>
+</div>
 <!--
     <form id="add" action="#" class="add_form modal" style="display: none;">
         <div id="msg"/>
