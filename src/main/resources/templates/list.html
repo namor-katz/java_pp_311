@@ -51,13 +51,11 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label" for="maxweight">MaxWeight:</label>
                         <div class="col-sm-9">
-                            <input type="text" name="maxweight" class="form-control" id="maxweight"
-                                   placeholder="максимальный вес"/>
+                            <input type="text" name="maxweight" class="form-control" id="maxweight" placeholder="максимальный вес"/>
                         </div>
                     </div>
                 </form>
             </div>
-
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -162,44 +160,11 @@
 
 
     function ajaxGet(id) {
-        $("#bookModalLabel").html("Edit user");
+        $("#userModalLabel").html("Edit Юзер!");
         $.get("http://localhost:8081/api/v1/user/info/" + id,
             function (data) {
-                let username = data.username;
-                // alert(username);
-                let email = data.email;
-                let maxweigth = data.maxweight;
                 $.each(data, function (key, value) {    //хз почему там бук бук. не может быть тут не дата. по чему итерироваться то если бук
-                    switch (key) {
-                        case 'genre':
-                            form.find("input[name='genreName']").val(value.genreName);
-                            form.find("input[name='genreDescription']").val(value.genreDescription);
-                            break;
-                        case 'authors':
-                            let select = $("#authors-select");
-                            select.empty();
-                            $.each(authorList, function (k, v) {
-                                if (v.id) {
-                                    select.append(
-                                        $("<option></option>")
-                                            .attr("value", v.id)
-                                            .attr("selected", authorIds.includes(v.id))
-                                            .text(v.name + " " + v.sername)
-                                    );
-                                }
-                            });
-                            break;
-                        case 'comments':
-                            $("#commentsTableBody").empty();
-                            $.each(value, function (k, v) {
-                                let comment = "<tr><td>" + v.date + "</td>" +
-                                    "<td>" + v.commentBody + "</td></tr>";
-                                $("#commentsTableBody").append(comment);
-                            });
-                            break;
-                        default:
                             form.find("input[name='" + key + "']").val(value);
-                    }
                 });
             }).done(function () {
             modal.modal();
@@ -224,15 +189,14 @@
             type = "PUT";
         }
 
-        // alert(formData.user.maxweight);
-
         $.ajax({
             url: url,
             type: type,
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
+            cache: false,
             data: JSON.stringify(formData.user)
-        }).done(function () {
+        }).always(function () {
             modal.modal("hide");
             location.reload(true);
         });
