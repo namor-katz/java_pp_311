@@ -26,6 +26,14 @@ public class RegistrationController {
         return "registration";
     }
 
+    @GetMapping("/registration2")
+    public String registration2(Model model) {
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("userForm", new User());
+        model.addAttribute("you", principal);
+        return "registration2";
+    }
+
     @PostMapping("/registration")
     public String addUser(@ModelAttribute("userForm") @Valid User userForm, BindingResult bindingResult, Model model) {
 

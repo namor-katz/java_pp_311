@@ -34,13 +34,24 @@ function ajaxSave() {
             username: $("#username").val(),
             email: $("#email").val(),
             maxweight: $("#maxweight").val(),
+            password: $("#password").val(),
         },
     };
 
-    if (formData.user.id !== "") {
+    if (formData.user.id == undefined) {
+        formData.user.id = 0;
+    }
+
+    else if (formData.user.id !== "") {
         url = "http://localhost:8081/api/v1/user/update/" + formData.user.id;
         type = "PUT";
     }
+
+    else {
+        formData.user.id = 0;
+    }
+
+    alert(formData.user);
 
     $.ajax({
         url: url,

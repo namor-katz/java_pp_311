@@ -48,9 +48,7 @@ public class UserRestController {
     }
 
     @ApiOperation(value = "Delete user by id", code = 204)
-    @ApiResponses(value = {
-            @ApiResponse(code = 204, message = "Delete completed")
-    })
+    @ApiResponses(value = {@ApiResponse(code = 204, message = "Delete completed")})
     @DeleteMapping(value = "user/delete/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable Long id) {
         User user = userService.findUserById(id);
