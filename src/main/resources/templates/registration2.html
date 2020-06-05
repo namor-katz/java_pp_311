@@ -109,8 +109,9 @@
             url: "http://localhost:8081/api/v1/user/new",
             data: myJson,
             cache: false,
-
-
+        }).always(function () {
+            let url2 = "http://localhost:8081/admin/list2";
+            $(location).attr('href',url2);
         })
 }
 </script>

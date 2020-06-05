@@ -51,8 +51,6 @@ function ajaxSave() {
         formData.user.id = 0;
     }
 
-    alert(formData.user);
-
     $.ajax({
         url: url,
         type: type,
@@ -61,7 +59,10 @@ function ajaxSave() {
         cache: false,
         data: JSON.stringify(formData.user)
     }).always(function () {
-        modal.modal("hide");
-        location.reload(true);
+        // modal.modal("hide");
+        // location.reload(true);
+        let url2 = "http://localhost:8081/admin/list2";
+        $(location).attr('href',url2);
+
     });
 }
