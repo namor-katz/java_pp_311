@@ -1,67 +1,79 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/" lang="en">
 <head>
+    <head th:replace="fragments/header :: common_header(~{::title}, ~{})">
     <meta charset="UTF-8">
     <title>User Page Ajax</title>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-
-    <style>
-        /* только явным прописыванием стиля тут удалось сделать белым. почему? */
-        .text-secondary a:hover,
-        .text-white a:active,
-        .text-white a:visited
-        {
-            color: gray;
-        }
-        caption {
-            caption-side: top; /* Заголовок над таблицей */
-        }
-    </style>
 </head>
 <body>
-<div class="container-fluid">
-    <header class="row text-white bg-dark">
-        <div class="col-md-9  text-white h2 text-left bg-dark" th:text="${user.email} + ' with roles:'">with roles: admin, user</div>
-        <div class="col-md-3 text-right bg-dark align-text-bottom  my-auto"><a href="/logout">Logout</a></div>
-        <!--  гиперссылка не переезжает вниз, не позиционируется по центру вертикально. игнорирует свойства выставляемые в контейнере -->
-        <!-- не работает выставление цвета текста для гиперссылки -->
-        <!-- нет фавикона из коропки, не добавляется свой по этой доке https://www.baeldung.com/spring-boot-favicon -->
-    </header>
-</div>
+<!-- this header of fragments -->
+<header th:insert="fragments/header :: header (${user.roles}, ${user.email})"></header>
 <div>
     <p th:text="${user.id}"  id="uuid" hidden></p>
 </div>
+
 <div id="result"></div>
+<!-- огромная строка -контейнер -->
+<div class="row">
+
+    <div class="col-2 container">       <!-- left container -->
+        <div class="col-12  text-white rounded bg-primary">User</div>
+    </div>
+
+    <div class="col-10 container bg-light pb-5">
+        <div class="row">
+            <div class="col-12 h2">User information-page</div>
+        </div>
+
+        <div class="row">
+            <div class="col-11 bg-light h3 m-0 border-right border-left border-top">
+                About user
+            </div>
+        </div>
+
+        <div class="row">
+            <!--        <div class="col-11 h2 border mb-0 ml-3 bg-danger">About user</div>-->
+            <!--        <div class="col11"></div>-->
+            <div class="col-11 bg-white m-0 p-0 border">
+                <!--            <div class="col-12 h2 border mb-0">-->
+                <!--                About user-->
+                <!--            </div>-->
+                <table class="table table-striped">
+                    <!--                <caption class="h2 border">About user</caption>-->
+                    <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>email</th>
+                        <th>maxWeigth</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+<!--                    <tr th:object="${user}">-->
+                        <td id="id"></td>
+                        <td id="username"></td>
+                        <td id="email"></td>
+                        <td id="maxweight"></td>
+<!--                    </tr>-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
 $(function () {
     let idValue = $('#uuid').text();
-    alert(idValue);  //id верный!
-    // alert($('#uuid').text());
 
     $.get("http://localhost:8081/api/v1/user/info/" + idValue).done(function (data) {
-        // data.forEach(function (da) {
-            $('#result').append(
-                // data.id
-                data.username,
-                " ",
-                data.email
-            )
-        // })
+        $('#username').append(data.username)
+        $("#id").append(data.id)
+        $("#email").append(data.email)
+        $("#maxweight").append(data.maxweight)
     });
-    // let userI = $.get("http://localhost:8081/api/v1/user/info/" + idValue);
-    // alert(userI);
-    // $('#result').append(userI.id);
-    // $.each(userI, function (key, value) {
-    //     $("#result").text(key, value);
-    // })
-
 });
-// }
 </script>
 <script type="text/javascript" th:src="@{/js/userAjax.js}"></script>
 </body>
