@@ -32,6 +32,7 @@ public class UserRestController {
 
     @GetMapping(value = "user/info/{id}")
     public User getUserInfo(@PathVariable String id) {
+        System.out.println("в меня пришёл запрос! " + id);
         String id0 = id.replace("id", "");
         Long id1;
         try {

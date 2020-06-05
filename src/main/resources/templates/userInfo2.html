@@ -32,9 +32,37 @@
         <!-- нет фавикона из коропки, не добавляется свой по этой доке https://www.baeldung.com/spring-boot-favicon -->
     </header>
 </div>
+<div>
+    <p th:text="${user.id}"  id="uuid" hidden></p>
+</div>
+<div id="result"></div>
 
 <script type="text/javascript">
+$(function () {
+    let idValue = $('#uuid').text();
+    alert(idValue);  //id верный!
+    // alert($('#uuid').text());
 
+    $.get("http://localhost:8081/api/v1/user/info/" + idValue).done(function (data) {
+        // data.forEach(function (da) {
+            $('#result').append(
+                // data.id
+                data.username,
+                " ",
+                data.email
+            )
+        // })
+    });
+    // let userI = $.get("http://localhost:8081/api/v1/user/info/" + idValue);
+    // alert(userI);
+    // $('#result').append(userI.id);
+    // $.each(userI, function (key, value) {
+    //     $("#result").text(key, value);
+    // })
+
+});
+// }
 </script>
+<script type="text/javascript" th:src="@{/js/userAjax.js}"></script>
 </body>
 </html>
