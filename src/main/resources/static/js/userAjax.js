@@ -1,4 +1,3 @@
-//вынести сюда скрипт со страницы
 let form = $("#userForm");
 let modal = $("#userModal");
 
@@ -16,7 +15,7 @@ function ajaxGet(id) {
     $("#userModalLabel").html("Edit Юзер!");
     $.get("http://localhost:8081/api/v1/user/info/" + id,
         function (data) {
-            $.each(data, function (key, value) {    //хз почему там бук бук. не может быть тут не дата. по чему итерироваться то если бук
+            $.each(data, function (key, value) {
                 form.find("input[name='" + key + "']").val(value);
             });
         }).done(function () {
@@ -63,6 +62,5 @@ function ajaxSave() {
         // location.reload(true);
         let url2 = "http://localhost:8081/admin/list2";
         $(location).attr('href',url2);
-
     });
 }

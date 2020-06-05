@@ -89,11 +89,9 @@
     </div>
 </div>
 <script type="text/javascript">
-    // let url = "http://localhost:8081/api/v1/user/new";
     function getUserInform() {
         let username = $('#username').val();
         let password = $('#password').val();
-        //let passwordConfirm = $('#password-confirm').val(); //переименовать ? вообще убрать? без нее тоже работает?
         let email = $('#email').val();
         let maxweigth = $('#maxweight').val();
         var myJson = {"username": username,
@@ -101,7 +99,6 @@
             "email": email,
             "maxweigth": maxweigth
         };
-        // alert(myJson.username);
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
